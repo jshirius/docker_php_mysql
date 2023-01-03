@@ -18,6 +18,9 @@ libpq-dev
 # ログイン直後のディレクトリを指定する
 WORKDIR /var/www/html
 
+# Composerをインストールする(Docker 17.05以上)
+COPY --from=composer /usr/bin/composer /usr/bin/composer
+
 # Laravelで必要になるmodRewriteを有効化する(.htaccessの利用)
 RUN mv /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled
 RUN /bin/sh -c a2enmod rewrite
